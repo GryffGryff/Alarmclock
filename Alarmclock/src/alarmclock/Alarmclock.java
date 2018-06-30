@@ -31,6 +31,7 @@ public class Alarmclock {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        // commit 
         Sound sound = new Sound ();
         System.out.println(sound.getVolume());
         sound.setVolume(5);
