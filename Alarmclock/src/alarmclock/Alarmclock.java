@@ -5,11 +5,26 @@
  */
 package alarmclock;
 
+import java.time.LocalTime;
+
 /**
  *
  * @author elenanisha
  */
 public class Alarmclock {
+    private LocalTime alarmTime;
+    
+    public LocalTime getAlarmTime() {
+        return this.alarmTime;
+    }
+    
+    public void setAlarmTime(LocalTime time) {
+        this.alarmTime = time;
+    }
+    
+    public void setAlarmTime(int hour, int minute, int second) {
+        this.alarmTime = LocalTime.of(hour, minute, second);
+    }
 
     /**
      * @param args the command line arguments
@@ -21,6 +36,9 @@ public class Alarmclock {
         sound.setVolume(5);
         sound.playSound();
         sound.stopSound();
+        Clock clock = new Clock ();
+        System.out.println(clock.getTime());
+        clock.update();
     }
     
 }
