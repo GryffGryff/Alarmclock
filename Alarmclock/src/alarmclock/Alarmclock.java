@@ -18,8 +18,8 @@ public class Alarmclock {
      */
     public static void main(String[] args) {
         //TODO code application logic here
-        Sound sound = new Sound ();
-        sound.getFiles();
+        //Sound sound = new Sound ();
+        //sound.getFiles();
         //System.out.println(sound.getVolume());
         //sound.setVolume(5);
         //sound.playSound();
@@ -28,7 +28,7 @@ public class Alarmclock {
         //System.out.println(clock.getTime());
         //clock.update();
         //Alarm alarm = new Alarm();
-        //alarm.setAlarmTime(18, 11, 0);
+        //alarm.setAlarmTime(13, 47, 0);
         //alarm.checkAlarm();
     }
     

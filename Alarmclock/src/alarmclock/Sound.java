@@ -19,8 +19,10 @@ public class Sound {
     protected String defDir = "/Users/Gryffin/IdeaProjects/Alarmclock/Data/";
 
     public Sound() {
-        // sets audioStream to default wav
-        setAudioStream("/Users/Gryffin/IdeaProjects/Alarmclock/Data/pirate.wav");
+        //adds all .wav files in data directory to vector v
+        getFiles();
+        // sets audioStream to random wav
+        setAudioStream(pickWav());
     }
 
     public int getVolume () {
@@ -92,7 +94,7 @@ public class Sound {
         //make a random obj
         Random random = new Random();
         //return the string that is at a random index of field v
-        return (String) v.get(random.nextInt(v.size()-1));
+        return (String) v.get(random.nextInt(v.size()));
     }
 
     public AudioStream makeAudioStream(String filepath) {
