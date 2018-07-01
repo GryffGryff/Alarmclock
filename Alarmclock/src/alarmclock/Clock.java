@@ -12,21 +12,20 @@ import java.time.LocalTime;
  * @author Gryffin
  */
 public class Clock {
-    private LocalTime time;
+
     public LocalTime getTime(){
         return LocalTime.now();
     }
+
     public void update(){
-        int repeat = 0;
-        while(repeat <= 20) {
-            System.out.println(time = LocalTime.now());
+        while(true) {
+            System.out.println(getTime());
             try{
-                Thread.sleep(10000);
+                Thread.sleep(60000);
             }
             catch(InterruptedException e){
                 System.out.println("while loop interrupted");
             }
-            repeat++;
         }
     }
 }
