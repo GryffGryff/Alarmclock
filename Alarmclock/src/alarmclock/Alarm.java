@@ -3,6 +3,7 @@ package alarmclock;
 import java.time.LocalTime;
 
 public class Alarm {
+    
     protected LocalTime alarmTime = null;
     protected boolean played = false;
 
