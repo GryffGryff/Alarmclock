@@ -3,7 +3,6 @@ package alarmclock;
 import java.time.LocalTime;
 
 public class Alarm {
-    
 
     public static final String  DADDY_ALARM = "daddy";
     public static final String  MOMMY_ALARM = "mommy";

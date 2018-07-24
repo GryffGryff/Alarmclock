@@ -3,7 +3,12 @@ package alarmclock;
 import java.time.LocalTime;
 
 public class Alarm {
+<<<<<<< HEAD
+=======
     
+    protected LocalTime alarmTime = null;
+    protected boolean played = false;
+>>>>>>> e924bcc67d6da4a7bde3ae75cb5a950381ee1785
 
     public static final String  DADDY_ALARM = "daddy";
     public static final String  MOMMY_ALARM = "mommy";
