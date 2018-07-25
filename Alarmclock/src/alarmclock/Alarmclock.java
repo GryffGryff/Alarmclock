@@ -29,6 +29,7 @@ public class Alarmclock {
         //Clock clock = new Clock ();
         //System.out.println(clock.getTime());
         //clock.update();
+
         //Alarm alarm = new Alarm();
         //alarm.setAlarmTime(13, 47, 0);
         //alarm.checkAlarm();
@@ -74,6 +75,8 @@ public class Alarmclock {
         //gpio.shutdown();
 
         //System.out.println("Exiting ControlGpioExample");
+        //Alarm alarm = new Alarm();
+        //alarm.setAlarmTime(11, 28, 0, Alarm.DADDY_ALARM);
+        //alarm.checkAlarm();
     }
-    
 }

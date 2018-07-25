@@ -3,7 +3,6 @@ package alarmclock;
 import java.time.LocalTime;
 
 public class Alarm {
-    
 
     public static final String  DADDY_ALARM = "daddy";
     public static final String  MOMMY_ALARM = "mommy";
@@ -108,28 +107,6 @@ public class Alarm {
             catch (InterruptedException ie) {
                 System.out.println("InterruptedException");
             }
-        }
-    }
-
-    public void cancelAllAlarms () {
-        this.jointTime = null;
-        this.daddyTime = null;
-        this.mommyTime = null;
-        System.out.println("all alarms have been canceled");
-    }
-
-    public void cancelAlarm (String s) {
-        if(s.equals(DADDY_ALARM)) {
-            this.daddyTime = null;
-            System.out.println("daddy's alarm was canceled");
-        }
-        if(s.equals(MOMMY_ALARM)) {
-            this.mommyTime = null;
-            System.out.println("mommy's alarm was canceled");
-        }
-        if(s.equals(JOINT_ALARM)) {
-            this.jointTime = null;
-            System.out.println("the joint alarm was canceled");
         }
     }
 }
