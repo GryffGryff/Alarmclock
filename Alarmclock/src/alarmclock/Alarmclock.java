@@ -39,25 +39,46 @@ public class Alarmclock {
         final GpioController gpio = GpioFactory.getInstance();
 
         // provision gpio pin #01 as an output pin and turn on
-        final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_01, "MyLED", PinState.HIGH);
+        // final GpioPinDigitalOutput pin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02, "MyLED", PinState.LOW);
 
         // set shutdown state for this pin
-        pin.setShutdownOptions(true, PinState.LOW);
+        //pin.setShutdownOptions(true, PinState.LOW);
 
-        // provision gpio pin #02 as an input pin with its internal pull down resistor enabled
-        final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_02, PinPullResistance.PULL_DOWN);
-
+        // provision gpio pin #01 as an input pin with its internal pull down resistor enabled
+        final GpioPinDigitalInput select = gpio.provisionDigitalInputPin(RaspiPin.GPIO_01, PinPullResistance.PULL_DOWN);
+        // provision gpio pin #04 as an input pin with its internal pull down resistor enabled
+        final GpioPinDigitalInput up = gpio.provisionDigitalInputPin(RaspiPin.GPIO_04, PinPullResistance.PULL_DOWN);
+        // provision gpio pin #05 as an input pin with its internal pull down resistor enabled
+        final GpioPinDigitalInput down = gpio.provisionDigitalInputPin(RaspiPin.GPIO_05, PinPullResistance.PULL_DOWN);
+        
         // set shutdown state for this input pin
-        myButton.setShutdownOptions(true);
+        select.setShutdownOptions(true);
+        // set shutdown state for this input pin
+        up.setShutdownOptions(true);
+        // set shutdown state for this input pin
+        down.setShutdownOptions(true);
 
         // create and register gpio pin listener
-        myButton.addListener(new GpioPinListenerDigital() {
+        select.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
                 // display pin state on console
-                System.out.println(" --> GPIO PIN STATE CHANGE: " + event.getPin() + " = " + event.getState());
+                System.out.println(" --> SELECT BUTTON STATE CHANGE: " + event.getPin() + " = " + event.getState());
             }
-
+        });
+        up.addListener(new GpioPinListenerDigital() {
+            @Override
+            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
+                // display pin state on console
+                System.out.println(" --> UP BUTTON STATE CHANGE: " + event.getPin() + " = " + event.getState());
+            }
+        });
+        down.addListener(new GpioPinListenerDigital() {
+            @Override
+            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
+                // display pin state on console
+                System.out.println(" --> DOWN BUTTON STATE CHANGE: " + event.getPin() + " = " + event.getState());
+            }
         });
 
         System.out.println(" ... complete the GPIO #02 circuit and see the listener feedback here in the console.");
