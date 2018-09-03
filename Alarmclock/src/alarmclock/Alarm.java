@@ -5,9 +5,9 @@ import java.time.LocalTime;
 public class Alarm {
     
 
-    public static final String  DADDY_ALARM = "daddy";
-    public static final String  MOMMY_ALARM = "mommy";
-    public static final String  JOINT_ALARM = "joint";
+    public static final String  DADDY_ALARM = "Anind's Alarm";
+    public static final String  MOMMY_ALARM = "Jen's Alarm";
+    public static final String  JOINT_ALARM = "Joint Alarm";
 
     protected String whichAlarm = "";
     protected LocalTime jointTime = null;
@@ -49,15 +49,35 @@ public class Alarm {
         }
     }
 
-    public void setAlarmTime(int hour, int minute, int second, String s) {
+    public void setAlarmTime(int hour, int minute, String s) {
         if(s.equals(DADDY_ALARM)) {
-            this.daddyTime = LocalTime.of(hour, minute, second);
+            this.daddyTime = LocalTime.of(hour, minute);
         }
         if(s.equals(MOMMY_ALARM)) {
-            this.mommyTime = LocalTime.of(hour, minute, second);
+            this.mommyTime = LocalTime.of(hour, minute);
         }
         if(s.equals(JOINT_ALARM)) {
-            this.jointTime = LocalTime.of(hour, minute, second);
+            this.jointTime = LocalTime.of(hour, minute);
+        }
+    }
+
+    public int getAlarmHour(String s) {
+        if(s.equals(DADDY_ALARM)) {
+            return this.daddyTime.getHour();
+        } else if(s.equals(MOMMY_ALARM)) {
+            return this.mommyTime.getHour();
+        } else if(s.equals(JOINT_ALARM)) {
+            return this.jointTime.getHour();
+        }
+    }
+
+    public int getAlarmMinute(String s) {
+        if(s.equals(DADDY_ALARM)) {
+            return this.daddyTime.getMinute();
+        } else if(s.equals(MOMMY_ALARM)) {
+            return this.mommyTime.getMinute();
+        } else if(s.equals(JOINT_ALARM)) {
+            return this.jointTime.getMinute();
         }
     }
 
