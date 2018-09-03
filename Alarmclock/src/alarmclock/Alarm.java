@@ -69,6 +69,7 @@ public class Alarm {
         } else if(s.equals(JOINT_ALARM)) {
             return this.jointTime.getHour();
         }
+        return 0;
     }
 
     public int getAlarmMinute(String s) {
@@ -79,6 +80,7 @@ public class Alarm {
         } else if(s.equals(JOINT_ALARM)) {
             return this.jointTime.getMinute();
         }
+        return 0;
     }
 
     public LocalTime getTime(){

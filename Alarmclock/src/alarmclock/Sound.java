@@ -20,9 +20,9 @@ public class Sound {
     protected Vector jWav = new Vector();
     protected Vector mWav = new Vector();
     protected Vector dWav = new Vector();
-    protected String defDir = "/Users/Gryffin/IdeaProjects/Alarmclock/Data/";
-    protected String daddyDir = "/Users/Gryffin/IdeaProjects/Alarmclock/Data/Daddy/";
-    protected String mommyDir = "/Users/Gryffin/IdeaProjects/Alarmclock/Data/Mommy/";
+    protected String defDir = "/home/pi/IdeaProjects/Alarmclock/Alarmclock/Data";
+    protected String daddyDir = "/home/pi/IdeaProjects/Alarmclock/Alarmclock/Data/Daddy/";
+    protected String mommyDir = "/home/pi/IdeaProjects/Alarmclock/Alarmclock/Data/Mommy/";
 
     public Sound(Alarm alarm) {
         //adds all .wav files in data directory to vector v

@@ -1,8 +1,6 @@
 package alarmclock;
 
 import java.util.Vector;
-import com.pi4j.io.gpio.*;
-import com.pi4j.io.gpio.event.*;
 
 public class UserInput {
     //////GLOBAL FIELDS//////
@@ -19,15 +17,6 @@ public class UserInput {
     //MenuItems
 
     //////FIELDS//////
-    //create GpioController
-    protected final GpioController gpio = GpioFactory.getInstance();
-    // provision gpio pin #01 as an input pin with its internal pull down resistor enabled
-    protected final GpioPinDigitalInput select = gpio.provisionDigitalInputPin(RaspiPin.GPIO_01, PinPullResistance.PULL_DOWN);
-    // provision gpio pin #04 as an input pin with its internal pull down resistor enabled
-    protected final GpioPinDigitalInput up = gpio.provisionDigitalInputPin(RaspiPin.GPIO_04, PinPullResistance.PULL_DOWN);
-    // provision gpio pin #05 as an input pin with its internal pull down resistor enabled
-    protected final GpioPinDigitalInput down = gpio.provisionDigitalInputPin(RaspiPin.GPIO_05, PinPullResistance.PULL_DOWN);
-
     //Pointer to main alarm class
     protected Alarm alarm;
     //Vector that holds all alarm menus
@@ -79,41 +68,6 @@ public class UserInput {
         //add menuItems to alarmMenu
         alarmMenu.add(setAlarm);
         alarmMenu.add(cancelAlarm);
-
-        // set shutdown state for select input pin
-        this.select.setShutdownOptions(true);
-        // set shutdown state for up input pin
-        this.up.setShutdownOptions(true);
-        // set shutdown state for down input pin
-        this.down.setShutdownOptions(true);
-
-        // create and register select gpio pin listener
-        select.addListener(new UserInput() {
-            @Override
-            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                // display pin state on console
-                System.out.println(" --> SELECT BUTTON STATE CHANGE: " + event.getPin() + " = " + event.getState());
-                updateState(SELECT_BUTTON);
-            }
-        });
-        // create and register up gpio pin listener
-        up.addListener(new UserInput() {
-            @Override
-            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                // display pin state on console
-                System.out.println(" --> UP BUTTON STATE CHANGE: " + event.getPin() + " = " + event.getState());
-                updateState(UP_BUTTON);
-            }
-        });
-        //create and register down gpio pin listener
-        down.addListener(new UserInput() {
-            @Override
-            public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event) {
-                // display pin state on console
-                System.out.println(" --> DOWN BUTTON STATE CHANGE: " + event.getPin() + " = " + event.getState());
-                updateState(DOWN_BUTTON);
-            }
-        });
     }
 
     //////METHODS//////
@@ -161,12 +115,14 @@ public class UserInput {
     }
 
     public void upButton() {
-        setIndex(getIndex() +1% getCurrMenu().size());
+        setIndex((getIndex() +1)% getCurrMenu().size());
+        System.out.println("Index is "+index);
         display(currIndexName());
     }
 
     public void downButton() {
-        setIndex(getIndex() -1% getCurrMenu().size());
+        setIndex((getIndex() + (getCurrMenu().size()-1))% getCurrMenu().size());
+        System.out.println("Index is "+index);
         display(currIndexName());
     }
 
@@ -175,11 +131,15 @@ public class UserInput {
     }
 
     public void updateState(int button) {
+        //System.out.println("In update state with button " + button + " and state " + currState);
         switch (currState) {
             case START:
+                //System.out.println("Index number is " + getIndex());
                 setIndex(0);
                 setCurrState(MAIN_MENU);
                 setCurrMenu(mainMenu);
+                System.out.println("Length of main menu is " + mainMenu.size());
+                System.out.println("Index number is " + getIndex());
                 display(getCurrMenu().getName());
                 break;
             case MAIN_MENU:
@@ -218,9 +178,11 @@ public class UserInput {
                             setCurrState(START);
                         } else if (currMenuItem().equals(setAlarm)) {
                             setIndex(alarm.getAlarmHour(whichAlarm));
-                            display(currIndexName());
+                            System.out.println("index num is "+index);
                             setCurrState(SET_HOUR);
                             setCurrMenu(setHour);
+                            display(currIndexName());
+                            System.out.println("size of setHour is "+setHour.size());
                             break;
                         }
                 }
@@ -236,9 +198,9 @@ public class UserInput {
                     case SELECT_BUTTON:
                         this.hour = Integer.decode(currIndexName());
                         setIndex(alarm.getAlarmMinute(whichAlarm));
-                        display(currIndexName());
                         setCurrState(SET_MINUTE);
                         setCurrMenu(setMinute);
+                        display(currIndexName());
                         break;
                 }
                 break;
