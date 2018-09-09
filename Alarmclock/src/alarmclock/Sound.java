@@ -56,7 +56,7 @@ public class Sound {
     public void setRandomAudioStream(Vector vector) {
         if (!vector.isEmpty()) {
             String s = pickWav(vector);
-            System.out.println("playing "+s);
+            //System.out.println("playing "+s);
             this.audioStream = makeAudioStream(s);
         }
     }
@@ -86,7 +86,7 @@ public class Sound {
             if (file.isFile() && !file.isHidden()){
                 vector.add(file.getPath());
                 addWav(file.getPath());
-                System.out.println(file.getPath());
+                //System.out.println(file.getPath());
             }
         }
     }
@@ -113,7 +113,7 @@ public class Sound {
         //make a random obj
         Random random = new Random();
         String wav = (String) vector.get(random.nextInt(vector.size()));
-        System.out.println("picked wav is " + wav);
+        //System.out.println("picked wav is " + wav);
         //return the string that is at a random index of field v
         return wav;
     }
@@ -128,26 +128,26 @@ public class Sound {
             audioStream = new AudioStream(in);
         } catch (Exception e) {
         }
-        System.out.println("we made an audiostream!");
+        //System.out.println("we made an audiostream!");
         //returns new AudioStream aStream
         return audioStream;
     }
 
     public void playSound () {
         //play specified sound
-        System.out.println("set vetor");
+        //System.out.println("set vetor");
         try {
             //set audioStream
             Vector vector = new Vector();
-            System.out.println("created vector");
+            //System.out.println("created vector");
             if(this.alarm.getWhichAlarm().equals(Alarm.DADDY_ALARM)) {
                 vector = dWav;
-                System.out.println("daddy's alarm");
+                //System.out.println("daddy's alarm");
             } else if(this.alarm.getWhichAlarm().equals(Alarm.MOMMY_ALARM)) {
                 vector = mWav;
-                System.out.println("mommy's alarm");
+                //System.out.println("mommy's alarm");
             } else if(this.alarm.getWhichAlarm().equals(Alarm.JOINT_ALARM)) {
-                System.out.println("joint alarm");
+                //System.out.println("joint alarm");
                 vector = jWav;
             }
             Iterator iterator = vector.iterator();
@@ -168,14 +168,14 @@ public class Sound {
 
     public void startSound (AudioStream audioStream) {
         AudioPlayer.player.start(audioStream);
-        System.out.println("Sound was started");
-        System.out.println("audiostream = " + audioStream);
+        //System.out.println("Sound was started");
+        //System.out.println("audiostream = " + audioStream);
     }
 
     public void stopSound () {
         //stop playing sound
         AudioPlayer.player.stop(getAudioStream());
         //print out sound stopped playing
-        System.out.println("sound stopped playing");
+        //System.out.println("sound stopped playing");
     }
 }

@@ -116,13 +116,13 @@ public class UserInput {
 
     public void upButton() {
         setIndex((getIndex() +1)% getCurrMenu().size());
-        System.out.println("Index is "+index);
+        //System.out.println("Index is "+index);
         display(currIndexName());
     }
 
     public void downButton() {
         setIndex((getIndex() + (getCurrMenu().size()-1))% getCurrMenu().size());
-        System.out.println("Index is "+index);
+        //System.out.println("Index is "+index);
         display(currIndexName());
     }
 
@@ -138,8 +138,8 @@ public class UserInput {
                 setIndex(0);
                 setCurrState(MAIN_MENU);
                 setCurrMenu(mainMenu);
-                System.out.println("Length of main menu is " + mainMenu.size());
-                System.out.println("Index number is " + getIndex());
+                //System.out.println("Length of main menu is " + mainMenu.size());
+                //System.out.println("Index number is " + getIndex());
                 display(getCurrMenu().getName());
                 break;
             case MAIN_MENU:
@@ -178,11 +178,11 @@ public class UserInput {
                             setCurrState(START);
                         } else if (currMenuItem().equals(setAlarm)) {
                             setIndex(alarm.getAlarmHour(whichAlarm));
-                            System.out.println("index num is "+index);
+                            //System.out.println("index num is "+index);
                             setCurrState(SET_HOUR);
                             setCurrMenu(setHour);
                             display(currIndexName());
-                            System.out.println("size of setHour is "+setHour.size());
+                            //System.out.println("size of setHour is "+setHour.size());
                             break;
                         }
                 }

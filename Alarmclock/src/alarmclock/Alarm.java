@@ -109,7 +109,7 @@ public class Alarm {
 
             if (daddyTime != null) {
                 if (time.getMinute() == daddyTime.getMinute() && time.getHour() == daddyTime.getHour()) {
-                    System.out.println("playing");
+                    //System.out.println("playing");
                     setWhichAlarm(DADDY_ALARM);
                     sound.playSound();
                 }
